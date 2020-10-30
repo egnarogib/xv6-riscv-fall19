@@ -15,13 +15,13 @@ int main() {
         close(child_fd[0]);
         // 子进程从parent读取字符ping
         if (read(parent_fd[0], buffer, length) != length) {
-            printf("prt ---> cld read error!\n");
+            printf("error: prt ---> cld read error!\n");
             exit();
         }
         printf("%d: received ping\n", getpid());
         // 子进程向child写入字符
         if (write(child_fd[1], buffer, length) != length) {
-            printf("prt <--- cld write error!\n");
+            printf("error: cld ---> prt write error!\n");
             exit();
         }
         exit();
@@ -32,12 +32,12 @@ int main() {
     close(child_fd[1]);
     // 父进程向parent写入字符
     if (write(parent_fd[1], buffer, length) != length) {
-        printf("prt ---> cld write error!\n");
+        printf("error: prt ---> cld write error!\n");
         exit();
     }
     // 父进程从child读取字符pong
     if (read(child_fd[0], buffer, length) != length) {
-        printf("prt <--- cld read error!\n");
+        printf("error: cld ---> prt read error!\n");
         exit();
     }
     printf("%d: received pong\n", getpid());

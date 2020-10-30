@@ -14,6 +14,7 @@ fmtname(char *path)
     ;
   p++;
   // Return name.
+  // 注意此处与 ls 不同，strlen(p) 需要 +1
   memmove(buf, p, strlen(p)+1);
   return buf;
 }

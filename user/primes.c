@@ -11,8 +11,8 @@ void findPrimes(int *list, int numOfList) {
     int temp;
     printf("prime %d\n", prime);
     pipe(p);
+    // 将剩下的数写入到子进程当中
     if (fork() == 0) {
-        // 将剩下的数写入到子进程当中
         for (i = 0; i < numOfList; i++) {
             temp = *(list + i);
             write(p[1], (char *)(&temp), 4);
